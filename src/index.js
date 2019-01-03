@@ -6,6 +6,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { store } from './store';
 
+//CREACTE JOB GULP AND TEST UNIT
 ReactDOM.render(
     <Provider store={store}> 
         <App />
