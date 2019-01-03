@@ -1,0 +1,463 @@
+----------------------------------------------------------------------------------------------------------------------------------
+																ES6
+----------------------------------------------------------------------------------------------------------------------------------
+DESTRUCTING
+
+Es una tecnica que nos permite asignar valores a variables desde un objeto mas complejo, o desde un array con varios elementos
+mediante la tecnica de object pattern.
+
+Ej de objeto complejo a variable
+const user, password = usuario;
+
+Ej de un array | myarray = ['a','b']
+const [x,y] = myarray;
+
+En este se puede utilizar "elision"
+(de esta forma se puede omitir uno o mas elementos de determinado array)
+
+const [,,x,y] = ['a','b','c','d'];
+
+Salida x:c e y:d
+
+En este caso tambien se puede usar "rest operator" / serian 3 puntos (...)
+(sirve para extraer elementos remanentes,Ojo parece el "spread operator" pero su funcionamiento es totalmente distinto)
+
+const [x, ...y] = ['a','b','c','d'];
+
+Salida x:a e y:['b','c','d']
+
+Nota: se puede usar con var,let,const!
+----------------------------------------------------------------------------------------------------------------------------------
+TEMPLATE STRING
+
+const number = 5;
+const addtext = 'Add text to principal text';
+
+const text = `Here is a text, a principal text and the magic number is ${number} - ${addtext}`;
+----------------------------------------------------------------------------------------------------------------------------------
+SIRVE PARA SERVIDORES CON CONEXION A INTERNET
+-ES BUENO CUANDO LA LIBERIA EXTERNA ES DE MUCHA UTILIZACION, LA MISMA SE QUEDA EN CACHE.CUANDO SOLISITAS POR PRIMERA VEZ QUEDA EN 
+CACHE ENTONCES CUANDO HACE EL GET SE AHORRA TIEMPOS DE CARGA.
+-NO ES BUENO PARA MAQUINAS SIN ACCESO A INTERNET - SE ROMPE LA VISTA
+
+https://cdnjs.com/
+----------------------------------------------------------------------------------------------------------------------------------
+REVISAR VALIDACION CON PROPTYPES
+
+https://reactjs.org/docs/typechecking-with-proptypes.html
+----------------------------------------------------------------------------------------------------------------------------------
+PRE-PROCESADORES DE CSS
+Ayudan a mantener gran cantidad de css, agregando variables, funciones y extras.
+
+Dentro del mundo de React tenemos Css Modules.
+Usa un alias con respecto al archivo exportado.Ayuda a mejorar la "Componentizacion"
+
+React incluye el css de cada componente en el bundle.js, y solo hace la peticion de los xxx.min.css externos que hayamos incluido
+dentro de app.js. Esto lo hace para mejorar tiempos de carga (load)
+
+IMPORTANTISIMO: LO QUE MAS IMPORTA EN CUANTO A TIEMPO DE RESPUESTA ES EL CARGADO DEL BUNDLE.JS (OSEA LA SOLICITUD DE ESTE ARCHIVO)
+MANTENER LO MAS LIVIANO POSIBLE SIEMPRE, PERO SIEMPRE!!
+
+http://lesscss.org/
+https://sass-lang.com/
+----------------------------------------------------------------------------------------------------------------------------------
+Fuentes externas
+
+https://fonts.google.com/
+----------------------------------------------------------------------------------------------------------------------------------
+GENERAR CSS TOOLS 
+
+https://www.cssmatic.com/
+----------------------------------------------------------------------------------------------------------------------------------
+FUNCTIONAL COMPONENT VS CLASS COMPONENT
+ES LO MISMO INTERNAMENTE SOLO CAMBIA EL CODING, EL FUNCTIONAL COMPONENTES MAS SIMPLE AL OTRO TIPO SE LE TIENE QUE AGREGAR
+EL METODO RENDER Y EXTENDS DE COMPONENT
+
+TAMBIEN AL EXTENDER DE COMPONENT VAAMOS A TENER MAS INFORMACION SOBRE EL COMPONENTE COMO INSTANCIA O ESTADOS DE LA MISMA.
+EJ SU SICLO DE VIDA!
+----------------------------------------------------------------------------------------------------------------------------------
+EJ:CICLO DE VIDA SENSILLO
+CONSTRUCTOR -> ESTADO INICIAL -> 1ER RENDER -> EVENTO X -> setState() -> 2DO RENDER
+----------------------------------------------------------------------------------------------------------------------------------
+PLUGGIN PARA CHROME | SIRVE MUCHISIMO PARA EL DEBUGGIN
+React Developer Tools
+----------------------------------------------------------------------------------------------------------------------------------
+FETCH  -> sirve para enviar una peticion via Get y solicitar datos o recursos a un servidor externo
+
+El unico parametro obligatorio es la ruta de acceso.
+Devuelve una promise
+----------------------------------------------------------------------------------------------------------------------------------
+Promise (Promesas)
+Peticion Ascincronica, valores de retorno en el momento, en un rato o nunca.
+Puede tener diferentes estados: PENDIENTE - CUMPLIDA - RECHAZADA
+PENDING
+FULL FILL
+REJECTED
+
+EJ:
+//resolve: para lo que sale bien
+//rejected: para lo que salga mal
+let promesa = new Promise((resolve, rejected) => {
+    //PARA SETEAR TIEMPO | EN ESTE CASO 2000 MS = 2S
+    setTimeout(() => {
+        resolve('Exito total!');
+    },2000)
+});
+
+//ACA USAMOS LA PROMESA
+promesa.then((mensaje) =>{
+	//ISOK | RESOLVE L:100
+    console.log(mensaje);
+}).catch((error) =>{
+	//ISERROR | REJECTED L:100
+    console.log(error);
+});
+----------------------------------------------------------------------------------------------------------------------------------
+Object Literal Property Value Shorthand
+
+const t1 = 'texto1';
+const t2 = 'texto2';
+
+const res = {
+	
+	tx1,
+	tx2,
+}
+----------------------------------------------------------------------------------------------------------------------------------
+SOLID | S:SIMPLE RESPONSABILITY
+
+S-> Tener una unica responsabilidad para mantener bajo el acomplamiento.
+O->
+L->
+I->
+D->
+----------------------------------------------------------------------------------------------------------------------------------
+Dentro de Network (f12 debugging chrome) - offline or slow 3g test different network
+----------------------------------------------------------------------------------------------------------------------------------
+Ternario {data ? si data tiene algo entonces true : sino otra cosa}
+{ data ? <WeatherData data={data}></WeatherData> : 'Loading . . .'}
+----------------------------------------------------------------------------------------------------------------------------------
+Material Desing UI/UX
+
+MDC - Componentes Material Designe
+https://material.io/
+----------------------------------------------------------------------------------------------------------------------------------
+Array.prototype.map()
+
+const arr = [1,2,3];
+
+const function = numero => (numero + 1);
+
+const result = arr.map(function);
+
+console.log(result);
+
+->[2,3,4]
+
+Nota:el map recive una funcion a partir de un array de datos que serian el ingreso de valor dentro de dicha funcion, opera y de-
+vuelve los valores hacia result. (ejecuta una promesa)
+----------------------------------------------------------------------------------------------------------------------------------
+REGLA:Toda lista de componentes necesitara un key explicito EJ:
+
+//key interna de components
+const strToComponents = cities =>(
+    cities.map( (city, index) => (<WeatherLocation key={index} city={city}/>))
+);
+
+//key natural
+const strToComponents = cities =>(
+    cities.map( city => (<WeatherLocation key={city} city={city}/>))
+);
+----------------------------------------------------------------------------------------------------------------------------------
+COMUNICACION ENTRE COMPONENTES PUEDE SER POR DOS TECNICAS: BURBUJEO OR REDUX
+----------------------------------------------------------------------------------------------------------------------------------
+RESPONSIVE
+
+ViewPort -> es el punto donde nuestra pagina se esta renderizando
+Index.html
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+La adaptacion de la vista de forma responsiva, que esta se pueda visualizar en diferentes dispositivos hace que se tenga mejor
+usabilidad.
+
+Tecnica para lograr esto mediante css3 es el uso de @media (media query), el cual modifica al viewport segun el medio o dispositivo
+por el cual se esta accediendo.
+
+Otra tecnica es el uso de FlexBox, aumento el grado de ordenamiento de los divisores.
+
+Boostraps (Aca hay inclusion de Css3 y flex y demas utilizades)
+diferentes layout
+
+React Flexbox Grid
+simple pero sirve para que sea responsive y poder ordenar los divisores
+----------------------------------------------------------------------------------------------------------------------------------
+Para la utilizacion del @media se necesita dentro del index.html el viewport con width=device-width
+----------------------------------------------------------------------------------------------------------------------------------
+Ciclo de actualziacion y renderizacion
+Lo primero que se ejectua es el constructor del app.js y su metodo render, cuando sucede un setState se produce un nuevo render
+react utiliza el virtualDom para comparar con el Dom que o cuales componentes cambiaron y solo renderiza esos componentes.
+
+Constructor (app.js) state = 
+
+render
+	Component1 render
+	Component2 render
+
+Cuando se produce un this.setState => nuevo render
+render
+	Component1 render
+	Component2 render
+----------------------------------------------------------------------------------------------------------------------------------
+Operador ternario
+Si city viene con contenido entonces se renderiza ForecastExtended, si viene null no renderiza nada
+{city ? <ForecastExtended city={city}/> : null}
+
+Este && nos evita hacer el chequeo de null
+{city && <ForecastExtended city={city}/>}
+----------------------------------------------------------------------------------------------------------------------------------
+Planificacion de Fetch y Loads
+Seleccionamos una ciudad
+ForecastExtended
+	Constructor (state inicial)
+	render (1)
+	ComponentDidMount
+		Fetch === (promise)
+		=== setState(resultado)
+	render (2) (Componente completo)
+		ForecastItem (n)
+		WeatherData render 
+----------------------------------------------------------------------------------------------------------------------------------
+Para el manejo de Fechas y Horas Moment.js
+
+https://momentjs.com/docs/
+----------------------------------------------------------------------------------------------------------------------------------
+Ciclo de vida REACT
+
+Componentes Tipo Funcion y Tipo Clase
+Los Tipos Clase tiene mas potencialidades que los de tipo funcion.
+
+Tiene que tener un o existir al menos un metodo render para que dicho componente pueda funcionar.
+
+Fases
+	-Montaje(Mounting)
+		-contructor (se ejecuta antes de que se monte el componente y uso mas intensivo es con el this.state)
+		-render
+		-componentDidMount (es invocado luego que el componente es insertado en el arbol del DOM, este es el momento
+							ideal para hacer peticones a servidores para la obtencion de data)
+	-Actualizacion
+		-render
+		-componentDidUpdate (es incovado inmediatamente despues que ocurre una actualizacion)
+	-Desmontaje(Unmounting)
+		-componentWillUnMount (Dentro de este metodo se puede realizar diferentes tareas como por ej invalidar timers, can-
+							   celar peticiones al servidor o eliminar cualquier tipo de suscripcion que pudiera haberse hecho
+							   en el componentDidMount)
+
+Alternativamente
+	-Manejo de Errores
+----------------------------------------------------------------------------------------------------------------------------------
+Que hace que un componente se actualice?
+-Cuando hacemos un setState
+-Cuando de un componente padre se modifican las props
+-Cuando se llama al forceUpdate
+
+Que elementos se pueden renderizar
+-Los reaclement
+-String como numeros 
+-Null o false
+
+http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
+----------------------------------------------------------------------------------------------------------------------------------
+DOM
+
+Es la representacion de toos los elementos del navegador en una jerarquia la cual cuando sucede una modificacion la misma se ac-
+tualiza. Dicha modificacion es realizada por los fwk de js pero dicha tarea es costosa en tiempo y performance.
+
+React mantiene en memoria una representacion liviana de cada uno de los componentes generados y antes cada modificacion de los 
+mismos se ejecuta una comparacion y determinacion, verifica los cambios q se realizaron y solo impacta estos en el dom real.
+
+Evitando de esta manera actualizaciones innecesarias.
+----------------------------------------------------------------------------------------------------------------------------------
+OneWayData Flow
+
+En react los flujos de dato van solo en una direccion de padre a hijo.
+Reconciliation: es cuando luego de una renderizacion, se podruce alguna modificacion o cambio de estado, esto provoca la compa-
+racion entre el Virtual Dom1 y Virtual Dom2 y las actualizaciones correspondientes en el DOM.
+
+1.- Dos elementos o nodos de diferente tipos generaran arboles distintos
+2.- Cuando dos elementos o nodos tienen mismo timpo,el desarrollador debera incluir un key para diferenciar
+
+Cual es el Mecanismo de React Para detectar un cambio?
+Mecanismo de diffing
+
+PRIMER CASO
+Cuando se cambio el tipo de elemento dentro de una rama del arbol.
+EJ DIV -> SPAN 
+Entonces se asome que se cambio toda la rama que estuviese por debajo de ese cambio:
+Se desmontara el componente anterior mediante ComponentWillUnMount() [Este se perdera por completo]
+Se montara el nuevo componente mediante ComponentWillMount()
+
+
+SEGUNDO CASO
+Verifica los tipos que sean iguales.
+EJ: cambio de el ClassName, esto sigue comparando con los hijos de dicho div.
+Solo produce un ComponentWillMount(), para la renderizacion y actualizacion del DOM.
+<div ClassName="before" title="stuff"/>
+<div ClassName="after" title="stuff"/>
+
+TERCER CASO
+Busqueda en profundida y a lo ancho de los hijos para buscar diferencias.
+
+POR ESTO MOTIVO ES IMPORTANTE USAR KEYS, LA MISMA NO TENDRIA QUE SER RANDOM YA QUE PODRIA GENERAR ISSUES,LO MEJOR
+SERIA ALGUN VALOR DE EL TIPO DE OBJETO QUE ESTAMOS USUANDO, MAS PERFORMANTE PARA REACT LA COMPARACION VIA "KEY"
+----------------------------------------------------------------------------------------------------------------------------------
+Reconciliation y SCU
+
+nodo C1 ejecuta un SCU (ShouldComponentUpdate) y al retornar un True le da lugar al vDOMEq (Virtual Dome Query) el cual ejecutara
+al Algoritmo de Diffing por cada nivel (Padre -> Hijo)
+
+SCU: Puede Devolver True/False -> True es que hay que seguir analizando por que dicho nodo o sus nodos hijos tiene cambios en el 
+arbol. /Si retorna False quiere decir que ya no hay que analizar por que dicho nodo y sus hijos no contempland diferencias de ar-
+bol.
+
+vDOMEq -> Ejecuta el algoritmo de busqueda y comparacion "Diffing"
+
+Nota: DEJAR RENDER PURO, SIN PROCESAMIENTO.
+
+React Fiber (Nuevo por dentro / Igual por fuera)
+Motor de evaluacion del DOM React.
+Renderizacion Incremental
+----------------------------------------------------------------------------------------------------------------------------------
+SPA vs MPA [Single Page Application vs Multiple Pages Application]
+
+
+SPA -> Primera solicitud al servidor | se obtiene bundle.js y Html lo que provee es que para cambiar de page no es necesario
+recargar la pagina. NUNCA SE RECARGA LA PAGINA asi mejorando el UX y los tiempos de carga.
+Esta situacion es buena para cuando tenes ingresos execivos de usuarios y generan muchos clicks.
+Contras: mantener el bundle.js bajo o no tan pesado!
+----------------------------------------------------------------------------------------------------------------------------------
+REDUX (Estado de la Aplicacion)
+
+El estado es unico y global (store)
+El estado se modifica por acciones (action)
+
+npm install --save redux
+npm install --save react-redux
+Redux DevTools -> Extension for Chrome
+
+
+EJ DE STORE:
+const store = createStore(()=>{});
+
+EJ DE ACTION:
+const action = { type:'setCity', value:city };
+
+
+PARA VINCHULAR REDUX CON EL EXTENSION DE CHROME
+const store = createStore(()=>{}, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+{Asi podemos ver las acciones que vamos creando}
+----------------------------------------------------------------------------------------------------------------------------------
+PROVIDER
+
+Dentro del index.js importamos import {Provider} from 'react-redux';
+Esto para proveer del store a los componentes que formen parte del <App>
+----------------------------------------------------------------------------------------------------------------------------------
+connect
+
+Connect nos sirve para conectar react con redux.
+Se va a usar en cada componente y sirve para que dicho componente acceda a el store.
+
+Connect recive dos funciones como parametros,retorno una funcion con un parametro.
+
+Ejemplos de una funcion de dos parametros que devuelve una funcion.
+EJ
+
+const connect = (value1,value2) =>{
+	return (componente) => {
+		const result = `${componente}-${value1*value2}`;
+		return result;
+	}
+}
+
+const componentConnect = connect(()=>2,()=>3);
+
+Salida: 6 [2*6]
+
+El connect retorna un componente conectado al contexto.
+----------------------------------------------------------------------------------------------------------------------------------
+High Order Components -> son transformaciones donde recive un componente y devuelve un componente con alguna extra o mejora.
+Ej del connect de redux le das un componente y de vuelve uno conectado al medio.
+----------------------------------------------------------------------------------------------------------------------------------
+Smart Components vs Dumb Components
+
+Containers vs Presentational
+(Smart)		  (Dumb)
+
+Smart: tiene conexion a el estado del componente
+Dumb: solo estan para ser presentados y mostrados solo logica de presentacion.
+
+Conteiners:componente que tiene acceso al estado de la aplicacion.(osea que tiene connect)
+
+Dividir responsabilidades uno que maneje estado otro sea la presnetacion.
+
+REGLA:los conteiner no tendrian que estar tan abajo en nuestro arbol de jerarquia. en nuestro ejemplo el que no seria buena idea
+hacerlo conteiner seria el WeatherUpdate
+
+conteiner -> Alto nivel
+WeatherList
+ForecastExtended
+----------------------------------------------------------------------------------------------------------------------------------
+const state = {
+	country:'Argentina',
+};
+
+const action = {payload:'Buenos Aires'};
+
+const newState = {...state,city:action.payload};
+
+Salida: 
+Object{
+	city:'Buenos Aires'
+	country:'Argentina',
+}
+----------------------------------------------------------------------------------------------------------------------------------
+Pure Function (Funcion Pura)
+
+Es una funcion que solo depende de los parametros de entrada.(no de pende de una db, ni un post,ni ningun otro parametro que le 
+pasemos)
+
+No se puede alterar los valores de ingreso, sino hacer copia de las entradas.
+----------------------------------------------------------------------------------------------------------------------------------
+Connect(1,2)componente | clase:127
+
+1:MapStateToProps (values)
+2:MapDispatchToProps(Func) -> objeto con funciones
+
+Si usamos directamente store no tenemos todas las bondades que nos provee connect.(menos performante)
+----------------------------------------------------------------------------------------------------------------------------------
+middlware trunk
+
+Evaluar si la accion que se esta evaluando, el resultado es una funcion.Si es una funcion retorna una action con el nombre que 
+le hallamos pasado como parametro: return(dispatch, getState, extraArgument)
+----------------------------------------------------------------------------------------------------------------------------------
+ReSelect     (Patron Selector)
+ 
+MemoIce -> Cache liviana.
+
+Lo utilizamos cuando tenemos muchos estados.
+createSelector( ... inputSelectors | [inputSelectors],resultFunc);
+
+Caracteristicas principales
+1.-Son eficientes ya que no se ejectuan si ninguno de sus parametros se modifica.
+2.-Permiten composicion: selectores que pueden tomar de entrada otros selectores.
+3.-Pueden minimizar el tamaño del store, ya que permiten generar datos procesados "al vuelo" en vez de tener que guardarlo.
+
+Memoization
+Tecnica de optimizacion que permite mejorar la velocidad de ejecucion guardando valores que son resultado de calculos (gralmente)
+completo. Utilizan memoria.
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
