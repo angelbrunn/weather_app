@@ -1,18 +1,33 @@
-# weather_app
+# WHEATHER APP
 
-Test Unit With Jest/enzyme Tree Dependecies
+## Installation
 
- "devDependencies": {
-    "babel": "^6.3.26",
-    "babel-jest": "^6.0.1",
-    "babel-polyfill": "^6.16.0",
-    "babel-preset-airbnb": "^1.0.1",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-react": "^6.16.0",
-    "enzyme": "^2.0.0"
-    }
+1. Install nvm (recommended)
+   https://github.com/creationix/nvm
 
-Config Babel (.babelrc)
-{
-    "presets": ["es2015", "react", "airbnb"]
-}
+2. Install node v10
+   `nvm instal 10`
+
+3. Install dependencies
+   `npm install`
+
+##### Build Library
+
+`npm run build`
+
+## Miscellaneous
+
+-- Exam exercise --
+
+### Recommended IDE extensions
+
+#### VS Code
+
+1. [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+2. [TypeScript TSLint Plugin](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin)
+3. [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
+   `ext install dsznajder.es7-react-js-snippets`
+
+### Debugging Jest in Chrome
+
+> http://artsy.github.io/blog/2018/08/24/How-to-debug-jest-tests/
